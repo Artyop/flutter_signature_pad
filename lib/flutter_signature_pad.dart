@@ -81,15 +81,14 @@ class SignatureState extends State<Signature> {
     );
   }
 
-  Future<ui.Image> getData() {
-    var recorder = ui.PictureRecorder();
-    var origin = Offset(0.0, 0.0);
-    var paintBounds = Rect.fromPoints(_lastSize.topLeft(origin), _lastSize.bottomRight(origin));
-    var canvas = Canvas(recorder, paintBounds);
-    widget.backgroundPainter.paint(canvas, _lastSize);
-    _painter.paint(canvas, _lastSize);
-    var picture = recorder.endRecording();
-    return picture.toImage(_lastSize.width.round(), _lastSize.height.round());
+  Future<ui.Image> getData() async {
+    ui.PictureRecorder recorder = ui.PictureRecorder();
+    Offset origin = Offset(0.0, 0.0);
+    var size = context.size;
+    Rect paintBounds = Rect.fromPoints(size.topLeft(origin), size.bottomRight(origin));
+    Canvas canvas = Canvas(recorder, paintBounds);
+    _painter.paint(canvas, size);
+    return await recorder.endRecording().toImage(size.width.floor(), size.height.floor());
   }
 
   void clear() {

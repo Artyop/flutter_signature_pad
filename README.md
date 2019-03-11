@@ -20,3 +20,9 @@ The constructor of the widget allow you to change the `color` (default to black)
 `clear`: allow you to clear the area to start again
 
 `getData`: allow you to retrieve the image
+
+## Credits
+
+This is a fork from https://github.com/kiwi-bop/flutter_signature_pad
+
+Fork is here because I had an issue on the getData method, might not be useful for people who already have a working example.
